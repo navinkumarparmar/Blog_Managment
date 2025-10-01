@@ -1,7 +1,6 @@
 const Blog = require("../models/blogModel");
 const apiError = require("../utils/ApiError");
 
-
 module.exports.createBlog = async function (req, res, next) {
   try {
     const { title, description } = req.body;
@@ -72,7 +71,11 @@ module.exports.updateBlog = async function (req, res, next) {
     blog.title = req.body.title || blog.title;
     blog.description = req.body.description || blog.description;
     await blog.save();
-    return res.json({ success: true, message: "Blog updated", blog });
+    return res.json({
+        success: true,
+         message: "Blog updated",
+         blog 
+        });
   } catch (err) {
     next(err);
   }
@@ -88,7 +91,10 @@ module.exports.deleteBlog = async function (req, res, next) {
     }
 
     await blog.deleteOne();
-    return res.json({ success: true, message: "Blog deleted" });
+    return res.json(
+        { success: true,
+        message: "Blog deleted" 
+        });
   } catch (err) {
     next(err);
   }
